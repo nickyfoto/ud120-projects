@@ -83,11 +83,20 @@ kmeans = KMeans(n_clusters=2, random_state=0).fit(data)
 pred = kmeans.labels_
 
 
-
-
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
 try:
     Draw(pred, finance_features, poi, mark_poi=False, name="clusters.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
+
+salary = []
+eso = []
+for k in data_dict:
+    if data_dict[k]['salary'] != 'NaN':
+        salary.append(data_dict[k]['salary'])
+    if data_dict[k]['exercised_stock_options'] != 'NaN':
+        eso.append(data_dict[k]['exercised_stock_options'])
+
+print max(eso), min(eso)
+print max(salary), min(salary)
